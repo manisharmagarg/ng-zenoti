@@ -13,6 +13,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CustomersComponent } from './customers/customers.component';
 import { CompanyComponent } from './company/company.component';
 import { CareersComponent } from './careers/careers.component';
+import { AngularFullpageModule } from '@fullpage/angular-fullpage';
 
 
 
@@ -31,7 +32,8 @@ import { CareersComponent } from './careers/careers.component';
     FormsModule,
     HttpClientModule,
     CoreModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    AngularFullpageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',
   template: `
-      
-    <section data-aos="fade-down">
+    <div  fullpage id="fullpage" [options]="config" (ref)="getRef($event)">  
+    <section  class="section girl-section"> 
         <div class="banner-outer">
             <div class="container">
                 <div class="banner-inner-main">
@@ -29,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section class="">
+    <section class="section girl-section">
         <div class="brand-outer">
             <div class="container">
                 <div class="row">
@@ -88,7 +88,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="girl-section">
+    <section class="section girl-section">
         <div class="container">
             <div class="">
                 <div class="center-content">
@@ -105,7 +105,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="elevate-section">
+    <section class="section elevate-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -140,7 +140,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="house-first_sec">
+    <section class="section house-first_sec">
         <div class="container">
             <div class="custom-girl_sec custom-head">
                 <h2> Being everywhere <br> need not mean <br> being all over the place </h2>
@@ -148,7 +148,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="house-first_sec house-first_sec2">
+    <section class="section house-first_sec house-first_sec2">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -173,7 +173,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="circle-color_sec">
+    <section class="section circle-color_sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
@@ -185,7 +185,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="automate_sec">
+    <section class="section automate_sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 center-div">
@@ -211,7 +211,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="product-panel_sec center-div padding-top">
+    <section class="section product-panel_sec center-div padding-top">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ">
@@ -285,7 +285,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="business-shop_sec center-div">
+    <section class="section business-shop_sec center-div">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -318,7 +318,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="team_sec center-div">
+    <section class="section team_sec center-div">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -336,7 +336,7 @@ import { Component, OnInit } from '@angular/core';
     </section>
 
 
-    <section data-aos="fade-down" class="partners_sec center-div">
+    <section class="section partners_sec center-div">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -420,7 +420,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="expert-sec center-div">
+    <section class="section expert-sec center-div">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -438,7 +438,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </section>
 
-    <section data-aos="fade-down" class="form-sec center-div section-space">
+    <section class="section form-sec center-div section-space"> 
         <div class="container">
             <div class="row">
                 <div class="col-md-4 center-div">
@@ -503,18 +503,43 @@ import { Component, OnInit } from '@angular/core';
                 </div>
             </div>
         </div>
-    </section>
+     </section>
+     </div> 
 
 
   `,
   styles: []
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit() {}
+   config;
+  fullpage_api;
 
-  title = 'ngSlick';
+  constructor() {
+
+    // this is just an example => for more details on config please visit fullPage.js docs
+    this.config = {
+       licenseKey: 'INSERT YOUR FULLPAGE LICENSE KEY HERE',  
+    fadingEffect: true,
+    fadingEffectKey: 'INSERT YOUR EXTENSION KEY HERE' ,
+    continuousVertical: true,
+    afterRender: function(){
+  
+    setInterval(function(){
+       fullpage_api.moveSectionDown();
+    },4000)
+   }
+    };
+  }
+
+  ngOnInit() {
+  }
+
+  getRef(fullPageRef) {
+    this.fullpage_api = fullPageRef;
+  }
+
+   title = 'ngSlick';
   slides = [342, 453, 846, 855, 234, 564, 744, 243];
 
   slideConfig = {
@@ -547,4 +572,5 @@ export class HomeComponent implements OnInit {
   beforeChange(e) {
     
   }
+   
 }
